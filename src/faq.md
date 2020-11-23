@@ -1,5 +1,5 @@
-#FAQ Migration
+# Frequently Asked Questions
 
-#### We have until when to claim for yours Pirl 2.0 ?
-
->There is no time limit set.
+#### FAQ list are updated regularly with questions from community members on Discord.
+You can also make questions on Pirl community forum, and we will update the list.<br>
+[Pirl Community Forum - FAQ](https://community.pirl.io/t/pirl-2-0-frequently-asked-questions/118)
