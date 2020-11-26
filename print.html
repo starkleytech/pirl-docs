@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About Pirl 2.0</a></li><li class="chapter-item expanded "><a href="participate.html"><strong aria-hidden="true">2.</strong> Participate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="run_a_validator.html"><strong aria-hidden="true">2.1.</strong> Validator</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="validator_guide/guides_how_to_validate.html"><strong aria-hidden="true">2.1.1.</strong> Run a validator</a></li></ol></li><li class="chapter-item expanded "><a href="nominator_guide/how_to_nominate.html"><strong aria-hidden="true">2.2.</strong> How to be a Nominator</a></li></ol></li><li class="chapter-item expanded "><a href="migrate/claims_coins.html"><strong aria-hidden="true">3.</strong> Migration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="migrate/in_brief.html"><strong aria-hidden="true">3.1.</strong> FAQ</a></li></ol></li><li class="chapter-item expanded "><a href="contribute/contribution.html"><strong aria-hidden="true">4.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="credits/credits.html"><strong aria-hidden="true">5.</strong> Credits</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About Pirl 2.0</a></li><li class="chapter-item expanded "><a href="participate.html"><strong aria-hidden="true">2.</strong> Participate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="run_a_validator.html"><strong aria-hidden="true">2.1.</strong> Validator</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="validator_guide/guides_how_to_validate.html"><strong aria-hidden="true">2.1.1.</strong> Run a validator</a></li></ol></li><li class="chapter-item expanded "><a href="nominator_guide/how_to_nominate.html"><strong aria-hidden="true">2.2.</strong> How to be a Nominator</a></li><li class="chapter-item expanded "><a href="setup_identity.html"><strong aria-hidden="true">2.3.</strong> How to set identity</a></li></ol></li><li class="chapter-item expanded "><a href="migrate/migrate.html"><strong aria-hidden="true">3.</strong> Migration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="migrate/new_wallet.html"><strong aria-hidden="true">3.1.</strong> Create Pirl 2.0 wallet</a></li><li class="chapter-item expanded "><a href="migrate/claims_coins.html"><strong aria-hidden="true">3.2.</strong> Claim coins with MEW</a></li><li class="chapter-item expanded "><a href="migrate/connect_ledger_with_mew.html"><strong aria-hidden="true">3.3.</strong> Ledger wallet with MEW</a></li><li class="chapter-item expanded "><a href="migrate/in_brief.html"><strong aria-hidden="true">3.4.</strong> FAQ</a></li></ol></li><li class="chapter-item expanded "><a href="contribute/contribution.html"><strong aria-hidden="true">4.</strong> Contribute</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contribute/setup_github.html"><strong aria-hidden="true">4.1.</strong> Setup Github + GitKraken</a></li><li class="chapter-item expanded "><a href="contribute/write_your_first_doc.html"><strong aria-hidden="true">4.2.</strong> Write your first guide</a></li><li class="chapter-item expanded "><a href="contribute/how_to_submit.html"><strong aria-hidden="true">4.3.</strong> How to submit</a></li><li class="chapter-item expanded "><a href="contribute/markdown_keyword.html"><strong aria-hidden="true">4.4.</strong> Markdown Keyword</a></li></ol></li><li class="chapter-item expanded "><a href="credits/credits.html"><strong aria-hidden="true">5.</strong> Credits</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -278,7 +278,7 @@ rustup target add wasm32-unknown-unknown --toolchain nightly-2020-07-01
 <p>clone Pirl from github</p>
 <pre><code>git clone https://github.com/pirl/pirl-2_0
 </code></pre>
-<p>and build it</p>
+<p>move to pirl-2_0 directory and build it</p>
 <pre><code>cargo +nightly-2020-07-01 build --release
 </code></pre>
 <p>Copy the binary ready to use</p>
@@ -304,7 +304,20 @@ WantedBy=multi-user.target
 </code></pre>
 <p>Check if your node is appereing in the telemetry UI : <a href="https://telemetry.polkadot.io/#list/Pirl">https://telemetry.polkadot.io/#list/Pirl</a></p>
 <h2><a class="header" href="#step-2-assign-the-node-to-an-account" id="step-2-assign-the-node-to-an-account">Step 2 Assign the node to an account</a></h2>
-<p>We assume that you created 2 account and that you have already bonded it. Be carefull, use a stash account and a controller account.</p>
+<p>We assume that you have already claim your coin from Pirl 1.0 (see <a href="https://docs.pirl.io/migrate/claims_coins.html">how to claim</a>) or you already have an account with your Pirl on it.</p>
+<p>You need to create an controller account in order to do the next steps. </p>
+<blockquote>
+<p>The stash account serve as you &quot;cold wallet&quot; with all your precious coin</p>
+<p>The controller account serve as a manager to your stash account
+<br></br><strong>Always keep in safe place your keystore file or your 12/24 words seed</strong></p>
+</blockquote>
+<p>To create an controller account, add account
+<img src="validator_guide/media/01.JPG" alt="Controller" /></p>
+<p>Choose any name that suit for you
+<img src="validator_guide/media/02.JPG" alt="Controller" /></p>
+<p>Then send some pirl (from your stash account) for covering network fees
+<img src="validator_guide/media/02b.JPG" alt="Controller" /></p>
+<p>You can proceed to the next steps</p>
 <h3><a class="header" href="#create-session-key" id="create-session-key">Create session key:</a></h3>
 <p>Go in you terminal where the node is installed and paste the current command, you will have a session key of your node.</p>
 <pre><code>curl -H &quot;Content-Type: application/json&quot; -d '{&quot;id&quot;:1, &quot;jsonrpc&quot;:&quot;2.0&quot;, &quot;method&quot;: &quot;author_rotateKeys&quot;, &quot;params&quot;:[]}' http://localhost:9933
@@ -312,6 +325,15 @@ WantedBy=multi-user.target
 <h3><a class="header" href="#submitting-the-setkeys-transaction" id="submitting-the-setkeys-transaction">Submitting the setKeys Transaction:</a></h3>
 <p>Go to the <a href="https://explorer.pirl.network/#/staking/actions">explorer</a> you can now create a validator, use the key generated above to paste in the form.</p>
 <p>Last step, hit the validate button when the transaction is confirmed.</p>
+<blockquote>
+<p>In case you have already bonded your pirl
+<img src="validator_guide/media/AlreadyStaked.JPG" alt="Stashes" /></p>
+<blockquote>
+<p>If your currently nominate, you can stop that with square button</p>
+</blockquote>
+<p>You can add your session key in the associate button
+<img src="validator_guide/media/setKeyForValidator.JPG" alt="Stashes" /></p>
+</blockquote>
 <p>Voila, you are all set</p>
 <p><br></br></p>
 <h2><a class="header" href="#list-of-vps-providers" id="list-of-vps-providers">List of VPS providers</a></h2>
@@ -358,6 +380,21 @@ The list below is purely indicative and not a recommandation.
 <br></br></p>
 </blockquote>
 <p><img src="nominator_guide/media/Nominate_6.JPG" alt="Nominate" /></p>
+<blockquote>
+<h2><a class="header" href="#info" id="info">Info</a></h2>
+<p>Rewarding system work as follow :</p>
+<p>Validator are reward by block reward + 20% transaction fee. <strong>This do not depend on stake amount ! </strong></p>
+<p>Validator take a % commision (you can see that info in <a href="https://explorer.pirl.network/#/staking">staking overview</a>)</p>
+<p>Validator and Nominator share the remaining reward according to their share</p>
+<blockquote>
+<p>Eg. Validator has 100 pirl staked, NominatorA has  50 pirl staked and NominatorB has 200 pirl staked</p>
+<p>Validator get 28.57% of the remaining reward, NominatorA 14.29% and NominatorB 57.14%.</p>
+</blockquote>
+<p>You can check potential profit/era in the <a href="https://explorer.pirl.network/#/staking/targets">targets panel</a>,
+but be carreful, this value change according to nomination on each era
+<img src="nominator_guide/media/profitNominator.JPG" alt="NominatorProfit" />
+<br></br></p>
+</blockquote>
 <ol start="7">
 <li>
 <p>Now you need to authorize transaction
@@ -368,13 +405,66 @@ The list below is purely indicative and not a recommandation.
 <img src="nominator_guide/media/Nominate_8.JPG" alt="Nominate" /></p>
 </li>
 </ol>
+<h1><a class="header" href="#how-to-setup-identity" id="how-to-setup-identity">How to setup identity</a></h1>
+<p>Go to <a href="https://explorer.pirl.network/#/accounts">account panel</a></p>
+<p>Then click on 3 dot for the account you and to identifie</p>
+<blockquote>
+<p>If you want to name your validator, be sure to select the stake account and not the controller account</p>
+</blockquote>
+<p><img src="media/identity1.JPG" alt="Identity" /></p>
+<p>Then click on Set on-chain identity
+<img src="media/identity2.JPG" alt="Identity" /></p>
+<p>Then fill your info and click on Set identity
+<img src="media/identity3.JPG" alt="Identity" /></p>
+<p>That's it ! </p>
+<h2><a class="header" href="#welcome-to-the-new-pirl-20-on-substrate" id="welcome-to-the-new-pirl-20-on-substrate">Welcome to the new Pirl 2.0 on substrate.</a></h2>
+<h3><a class="header" href="#pirl-has-migrated-from-its-original-proof-of-work-protocol--ethash--and-are-now-nominated-proof-of-stake-npos-based-on-substrate" id="pirl-has-migrated-from-its-original-proof-of-work-protocol--ethash--and-are-now-nominated-proof-of-stake-npos-based-on-substrate">Pirl has migrated from it's original proof-of-work protocol ( ethash ) and are now Nominated Proof-of-Stake (nPOS) based on substrate.</a></h3>
+<p>It`s time to claim your new Pirl 2.0.
+You can claim your &quot;old&quot; Pirl by following the guides supplied in this Wiki.
+Claim are based on your balance at block 7 650 000 on the old chain. (Nov 16, 2020)<br>
+<br>
+- Claim only has to be done once per old Pirl wallet.<br>
+- Pirl stored on STEX, Graviex and Sistemcoin at block 7 650 000 has been swapped by exchange.
+<br><br>
+Start by making yourself a new account in the new Pirl Portal as described in the guide.<br>
+Take your time and read the information given in the Wiki.</p>
+<br>
+<p>Welcome to Pirl 2.0 !</p>
+<h1><a class="header" href="#this-tutorial-covers-how-to-make-a-new-pirl-20-wallet-adress" id="this-tutorial-covers-how-to-make-a-new-pirl-20-wallet-adress">This tutorial covers how to make a new Pirl 2.0 wallet adress.</a></h1>
+<h2><a class="header" href="#pirl-20---portal" id="pirl-20---portal">Pirl 2.0 - Portal:</a></h2>
+<p>Go to <a href="https://explorer.pirl.network">Pirl 2.0 Portal - https://explorer.pirl.network</a> </p>
+<p>The new Pirl portal contains wallets,explorer,stats,voting,staking ++</p>
+<h3><a class="header" href="#to-open-a-new-pirl-accountwallet-on-the-new-chain-click-add-account" id="to-open-a-new-pirl-accountwallet-on-the-new-chain-click-add-account">To open a new Pirl Account/wallet on the new chain, click “Add account”</a></h3>
+<p><img src="migrate/media/new_wallet_1.png" alt="New_wallet" />
+<br></br></p>
+<ol>
+<li>Insert a wallet name.
+<strong> Important! Create backup of Mnemonic and store in a safe place. </strong></li>
+<li>Make a password for your new account</li>
+<li>Click <strong> “Next” </strong>
+<img src="migrate/media/new_wallet_2.png" alt="New_wallet" /></li>
+</ol>
+<h3><a class="header" href="#summary-page" id="summary-page">Summary page.</a></h3>
+<ol>
+<li>Click <strong>“Save”</strong> to generate the new wallet and new Keystore file.<br>
+<strong>Important! Remember to backup your wallet info, and keep it somewhere safe.
+<br>YOU are the only responsible for your own wallets.</strong>
+<img src="migrate/media/new_wallet_3.png" alt="New_wallet" /></li>
+</ol>
+<h3><a class="header" href="#general-info" id="general-info">General info.</a></h3>
+<p>To find general info, click on the wallet name (1)
+To copy wallet adress click on symbol (2) or (3)
+<img src="migrate/media/new_wallet_4.png" alt="New_wallet" /></p>
 <h1><a class="header" href="#claim-pirl-coins-from-old-chain-to-pirl-20" id="claim-pirl-coins-from-old-chain-to-pirl-20">Claim PIRL coins from old chain to Pirl 2.0</a></h1>
-<p>This tutorial describes how to claim your Pirl from “old chain” to Pirl 2.0.
-Balance of Pirls are taken from snapshot at block 7 650 000.</p>
-<p>In this tutorial we will use the MEW wallet and Pirl 2.0 Portal.
+<p>This tutorial describes how to claim your Pirl from “old chain” to Pirl 2.0.<br>
+Balance of Pirls where taken from snapshot at block 7 650 000, meaning you will only be able to claim what you had in balance at this block.</p>
+<p>In this tutorial we will use the MEW wallet and Pirl 2.0 Portal.<br>
 Before proceeding, you will have to create a wallet in the Pirl 2.0 Portal and log in to your Pirl wallet in <a href="https://www.myetherwallet.com/access-my-wallet">MEW</a> using your Keystore file.</p>
-<p>If you dont get any Pirl balance in the MEW wallet, please check your Network settings (1) and set to (PIRL) as shown in picture below.</p>
-<h1><a class="header" href="#a-hrefhttpsdashboardpirlnetworkpirl-20-portal-httpsdashboardpirlnetworka" id="a-hrefhttpsdashboardpirlnetworkpirl-20-portal-httpsdashboardpirlnetworka"><a href="https://dashboard.pirl.network">Pirl 2.0 Portal https://dashboard.pirl.network</a></a></h1>
+<p>If you dont get any Pirl balance in the MEW wallet, please check your Network settings (1) and set to (PIRL) as shown in picture below.<br></p>
+<ul>
+<li><strong>Note:</strong> It has been tested and verified that the claim works fine without changing the network as well.</li>
+</ul>
+<h2><a class="header" href="#a-hrefhttpsdashboardpirlnetworkpirl-20-portal-httpsdashboardpirlnetworka" id="a-hrefhttpsdashboardpirlnetworkpirl-20-portal-httpsdashboardpirlnetworka"><a href="https://dashboard.pirl.network">Pirl 2.0 Portal https://dashboard.pirl.network</a></a></h2>
 <p><img src="migrate/media/claims_coins_1.jpeg" alt="Claims" /></p>
 <p>In Pirl Portal, click Account and choose “Claim Tokens”.</p>
 <p><img src="migrate/media/claims_coins_2.jpeg" alt="Claims" /></p>
@@ -395,15 +485,67 @@ Click “Claim” and then “Submit” in the next box to collect your Pirls.</
 <p>Well done !</p>
 <p>If you have any feedback or comments to this tutorial, <a href="https://community.pirl.io/t/claim-pirls-from-old-chain-to-pirl-2-0-tutorial/131">please make a reply in this forum</a>.</p>
 <h2><a class="header" href="#thank-you-fantomas-for-the-tutorial" id="thank-you-fantomas-for-the-tutorial">Thank you @Fantomas for the tutorial</a></h2>
+<h1><a class="header" href="#how-to-connect-your-ledger-wallet-through-mew-for-claiming-your-asset" id="how-to-connect-your-ledger-wallet-through-mew-for-claiming-your-asset">How to connect your ledger wallet through MEW for claiming your asset</a></h1>
+<p>Firstly, go to <a href="https://www.myetherwallet.com/">MEW</a> then click on Access My Wallet
+<img src="migrate/media/connectMewWitLedger1.JPG" alt="MEW" /></p>
+<p>Then select Hardware
+<img src="migrate/media/connectMewWitLedger2.JPG" alt="MEW" /></p>
+<p>Then select the kind of hardware wallet you use (in our case Ledger, but should be revelant for other)
+<img src="migrate/media/connectMewWitLedger3.JPG" alt="MEW" /></p>
+<blockquote>
+<p>Do not forget to open the pirl app in your Ledger</p>
+</blockquote>
+<p>Then click on the arrow next to Ethereum to see all network available
+<img src="migrate/media/connectMewWitLedger4.JPG" alt="MEW" /></p>
+<p>Then select the Pirl network
+<img src="migrate/media/connectMewWitLedger5.JPG" alt="MEW" /></p>
+<p>Then choose your address, check ti accept Terms and tada !
+<img src="migrate/media/connectMewWitLedger6.JPG" alt="MEW" /></p>
+<p>Now you can proceed to <a href="migrate/./claims_coins.html">claim guide</a></p>
 <h1><a class="header" href="#migration-faq" id="migration-faq">Migration FAQ</a></h1>
+<h2><a class="header" href="#fast-access" id="fast-access">Fast access</a></h2>
+<p><a href="migrate/in_brief.html#claiming">Claiming</a></p>
+<p><a href="migrate/in_brief.html#masternode">Masternode</a></p>
+<p><a href="migrate/in_brief.html#general">General</a></p>
+<p><a href="migrate/in_brief.html#validator">Validator</a></p>
+<h2><a class="header" href="#claiming" id="claiming">Claiming</a></h2>
+<h4><a class="header" href="#what-should-i-do-to-switch-to-pirl-20-" id="what-should-i-do-to-switch-to-pirl-20-">What should I do to switch to pirl 2.0 ?</a></h4>
+<blockquote>
+<p>Follow the <a href="migrate/./claims_coins.html">claiming guide</a></p>
+</blockquote>
 <h4><a class="header" href="#we-have-until-when-to-claim-for-yours-pirl-20-" id="we-have-until-when-to-claim-for-yours-pirl-20-">We have until when to claim for yours Pirl 2.0 ?</a></h4>
 <blockquote>
 <p>There is no time limit set.</p>
 </blockquote>
+<h4><a class="header" href="#if-i-keep-my-pirl-on-the-exchange-is-the-change-to-the-new-blockchain-automatic-" id="if-i-keep-my-pirl-on-the-exchange-is-the-change-to-the-new-blockchain-automatic-">If I keep my PIRL on the exchange, is the change to the new blockchain automatic ?</a></h4>
+<blockquote>
+<p>Yes, the exchanges will swap your PIRL automatically. (Please don´t hold your coins longer at any exchange, not your keys, not your coins)</p>
+</blockquote>
+<h4><a class="header" href="#i-used-the-web-wallet-im-safe-for-the-claim-" id="i-used-the-web-wallet-im-safe-for-the-claim-">I used the web wallet, I'm safe for the claim ?</a></h4>
+<blockquote>
+<p>Yes, you can claim your coins with web wallet. Follow the <a href="migrate/./claims_coins.html">claiming guide</a></p>
+</blockquote>
+<h4><a class="header" href="#can-i-claim-my-coins-with-ledger-wallet-" id="can-i-claim-my-coins-with-ledger-wallet-">Can I claim my coins with ledger wallet ?</a></h4>
+<blockquote>
+<p>Yes, be sure to have backup phrase and latest firmware.</p>
+</blockquote>
+<h2><a class="header" href="#masternode" id="masternode">Masternode</a></h2>
 <h4><a class="header" href="#do-i-need-to-disable-the-masternode-to-get-my-claim-in-pirl-20-" id="do-i-need-to-disable-the-masternode-to-get-my-claim-in-pirl-20-">Do I need to disable the masternode to get my claim in Pirl 2.0 ?</a></h4>
 <blockquote>
 <p>No, you will get your coins even if they are locked in the contract.</p>
 </blockquote>
+<h4><a class="header" href="#i-didnt-unlocked-the-coins-locked-in-masternode-contract-are-they-lost-" id="i-didnt-unlocked-the-coins-locked-in-masternode-contract-are-they-lost-">I didn't unlocked the coins locked in masternode contract, are they lost ?</a></h4>
+<blockquote>
+<p>No, the coins locked in the masternode contract(s) will be available freely in your wallet after <a href="migrate/./claims_coins.html">claiming process</a>.</p>
+</blockquote>
+<h3><a class="header" href="#how-to-delete-all-the-old-pirl-services-on-masternodes-" id="how-to-delete-all-the-old-pirl-services-on-masternodes-">How to delete all the old Pirl services on masternodes ?</a></h3>
+<blockquote>
+<p>BE SURE TO NOT HAVE PIRL KEYS PRESENT </p>
+</blockquote>
+<blockquote>
+<p><code>service pirl stop &amp;&amp; service marlin stop &amp;&amp; rm -rf /root/.pirl &amp;&amp; rm -rf /root/.marlin &amp;&amp; systemctl disable pirl &amp;&amp; systemctl disable marlin</code></p>
+</blockquote>
+<h2><a class="header" href="#general" id="general">General</a></h2>
 <h4><a class="header" href="#does-wpirl-need-to-be-bridged-back-to-pirl-legacy-chain-for-swap-of-coins" id="does-wpirl-need-to-be-bridged-back-to-pirl-legacy-chain-for-swap-of-coins">Does wPIRL need to be bridged back to pirl legacy chain for swap of coins?</a></h4>
 <blockquote>
 <p>Yes, you need to bridge all your coins back to be able to swap your PIRL. After the snapshot it's not possible until we re-implemented it. No date or schedule yet.</p>
@@ -412,21 +554,24 @@ Click “Claim” and then “Submit” in the next box to collect your Pirls.</
 <blockquote>
 <p>Not at the beginning but we will support hardware wallets at a later stage. No date or schedule yet.</p>
 </blockquote>
-<h4><a class="header" href="#if-i-keep-my-pirl-on-the-exchange-is-the-change-to-the-new-blockchain-automatic-" id="if-i-keep-my-pirl-on-the-exchange-is-the-change-to-the-new-blockchain-automatic-">If I keep my PIRL on the exchange, is the change to the new blockchain automatic ?</a></h4>
+<h4><a class="header" href="#how-does-slashing-works-" id="how-does-slashing-works-">How does slashing works ?</a></h4>
 <blockquote>
-<p>Yes, the exchanges will swap your PIRL automatically. (Please don´t hold your coins longer at any exchange, not your keys, not your coins)</p>
+<ul>
+<li>Level 1: isolated unresponsiveness, i.e. being offline for an entire epoch. No slashing, only chilling.</li>
+<li>Level 2: concurrent unresponsiveness or isolated equivocation. Slashes a very small amount of the stake and chills.</li>
+<li>Level 3: misconducts unlikely to be accidental, but which do not harm the network's security to any large extent. Examples include concurrent equivocation or isolated cases of unjustified voting in GRANDPA. Slashes a moderately small amount of the stake and chills.</li>
+<li>Level 4: misconduct that poses a serious security or monetary risk to the system, or mass collusion. Slashes all or most of the stake behind the validator and chills.</li>
+</ul>
+<p><a href="https://research.web3.foundation/en/latest/polkadot/slashing.html">Reference research article about slashing</a></p>
 </blockquote>
-<h4><a class="header" href="#what-should-i-do-to-switch-to-pirl-20-" id="what-should-i-do-to-switch-to-pirl-20-">What should I do to switch to pirl 2.0 ?</a></h4>
+<h4><a class="header" href="#can-i-get-my-coins-back-if-i-stake-or-create-a-validator-" id="can-i-get-my-coins-back-if-i-stake-or-create-a-validator-">Can I get my coins back if I stake or create a validator ?</a></h4>
 <blockquote>
-<p>The change will be at block 7 650 000. Follow information on Discord and Twitter on when you will be able to perform the swap and switch to Pirl 2.0</p>
+<p>Yes you can unlock them when you want, you will have to wait the cooldown period to get it credited in your wallet, actual waiting period is 28 days.</p>
 </blockquote>
-<h4><a class="header" href="#how-will-the-swap-work-" id="how-will-the-swap-work-">How will the swap work ?</a></h4>
+<h2><a class="header" href="#validator-1" id="validator-1">Validator</a></h2>
+<h4><a class="header" href="#what-is-the-validator-reward-amount-" id="what-is-the-validator-reward-amount-">What is the validator reward amount ?</a></h4>
 <blockquote>
-<p>Snapshot will be taken at block 7 650 000, and you will be able to swap the Pirl balance at this block to Pirl 2.0</p>
-</blockquote>
-<h4><a class="header" href="#where-and-how-to-apply-for-coins-" id="where-and-how-to-apply-for-coins-">Where and how to apply for coins ?</a></h4>
-<blockquote>
-<p>From Pirl 2.0 Portal after block 7 650 000. Follow <a href="https://community.pirl.io/t/claim-pirls-from-old-chain-to-pirl-2-0-tutorial/131">this tutorial</a></p>
+<p>We can calculate it precisely, it depend on the network staking rate. Validator will have minted coins plus 20% of the transfert fees ( 80% goes to decentralised treasury ). Rewards are calculated based on era points, which have a probabilistic component. In other words, there may be slight differences in your rewards from era to era, and even amongst validators in the active set at the same time. These variations should cancel out over a long enough timeline.</p>
 </blockquote>
 <h4><a class="header" href="#what-is-the-minimum-requierement-for-a-validator-" id="what-is-the-minimum-requierement-for-a-validator-">What is the minimum requierement for a validator ?</a></h4>
 <blockquote>
@@ -440,48 +585,234 @@ Click “Claim” and then “Submit” in the next box to collect your Pirls.</
 </ul>
 <h3><a class="header" href="#a-hrefmigratevalidator_guideguides_how_to_validatehtmlread-more-about-validators-requierements-herea" id="a-hrefmigratevalidator_guideguides_how_to_validatehtmlread-more-about-validators-requierements-herea"><a href="migrate/../validator_guide/guides_how_to_validate.html">Read more about validators requierements here</a></a></h3>
 </blockquote>
-<h4><a class="header" href="#how-does-slashing-works-" id="how-does-slashing-works-">How does slashing works ?</a></h4>
-<blockquote>
-<ul>
-<li>Level 1: isolated unresponsiveness, i.e. being offline for an entire epoch. No slashing, only chilling.</li>
-<li>Level 2: concurrent unresponsiveness or isolated equivocation. Slashes a very small amount of the stake and chills.</li>
-<li>Level 3: misconducts unlikely to be accidental, but which do not harm the network's security to any large extent. Examples include concurrent equivocation or isolated cases of unjustified voting in GRANDPA. Slashes a moderately small amount of the stake and chills.</li>
-<li>Level 4: misconduct that poses a serious security or monetary risk to the system, or mass collusion. Slashes all or most of the stake behind the validator and chills.</li>
-</ul>
-<p><a href="https://research.web3.foundation/en/latest/polkadot/slashing.html">Reference research article about slashing</a></p>
-</blockquote>
-<h4><a class="header" href="#i-used-the-web-wallet-im-safe-for-the-claim-" id="i-used-the-web-wallet-im-safe-for-the-claim-">I used the web wallet, I'm safe for the claim ?</a></h4>
-<blockquote>
-<p>Yes, just wait the fork of the chain and you will be able to claim your coins in Pirl 2.0.</p>
-</blockquote>
-<h4><a class="header" href="#can-i-claim-my-coins-with-ledger-wallet-" id="can-i-claim-my-coins-with-ledger-wallet-">Can I claim my coins with ledger wallet ?</a></h4>
-<blockquote>
-<p>Yes, be sure to have backup phrase and latest firmware.</p>
-</blockquote>
-<h4><a class="header" href="#i-didnt-unlocked-the-coins-locked-in-masternode-contract-are-they-lost-" id="i-didnt-unlocked-the-coins-locked-in-masternode-contract-are-they-lost-">I didn't unlocked the coins locked in masternode contract, are they lost ?</a></h4>
-<blockquote>
-<p>No, the coins locked in the masternode contract(s) will be available freely in your wallet after the fork in the new network.</p>
-</blockquote>
-<h4><a class="header" href="#what-is-the-validator-reward-amount-" id="what-is-the-validator-reward-amount-">What is the validator reward amount ?</a></h4>
-<blockquote>
-<p>We can calculate it precisely, it depend on the network staking rate. Validator will have minted coins plus 20% of the transfert fees ( 80% goes to decentralised treasury ). Rewards are calculated based on era points, which have a probabilistic component. In other words, there may be slight differences in your rewards from era to era, and even amongst validators in the active set at the same time. These variations should cancel out over a long enough timeline.</p>
-</blockquote>
-<h4><a class="header" href="#can-i-get-my-coins-back-if-i-stake-or-create-a-validator-" id="can-i-get-my-coins-back-if-i-stake-or-create-a-validator-">Can I get my coins back if I stake or create a validator ?</a></h4>
-<blockquote>
-<p>Yes you can unlock them when you want, you will have to wait the cooldown period to get it credited in your wallet, actual waiting period is 28 days.</p>
-</blockquote>
-<h3><a class="header" href="#how-to-delete-all-the-old-pirl-services-on-masternodes-" id="how-to-delete-all-the-old-pirl-services-on-masternodes-">How to delete all the old Pirl services on masternodes ?</a></h3>
-<blockquote>
-<p>BE SURE TO NOT HAVE PIRL KEYS PRESENT </p>
-</blockquote>
-<blockquote>
-<p><code>service pirl stop &amp;&amp; service marlin stop &amp;&amp; rm -rf /root/.pirl &amp;&amp; rm -rf /root/.marlin &amp;&amp; systemctl disable pirl &amp;&amp; systemctl disable marlin</code></p>
-</blockquote>
 <h1><a class="header" href="#contribution" id="contribution">Contribution</a></h1>
 <h2><a class="header" href="#how-can-i-contribute-to-the-docs-" id="how-can-i-contribute-to-the-docs-">How can I contribute to the docs ?</a></h2>
 <blockquote>
 <p>Fork and create a pull request on this repo: <a href="https://github.com/starkleytech/pirl-docs">https://github.com/starkleytech/pirl-docs</a></p>
 </blockquote>
+<h1><a class="header" href="#windows-how-to-setup-github--gitkraken-and-start-contribute" id="windows-how-to-setup-github--gitkraken-and-start-contribute">[Windows] How to setup Github + GitKraken and start contribute</a></h1>
+<p>Hey fellow, if you seek to contribute with pirl docs, the following guides should be usefull for people who didn't use github.</p>
+<p>In this guide, you will see how to create an account, fork the main repo and clone it to start to contribute</p>
+<h2><a class="header" href="#requirements-2" id="requirements-2">Requirements</a></h2>
+<p>Firstly, go to <a href="https://github.com">github</a> and create an account if you doesn't have one yet</p>
+<p>Then I recommand you to use GitKraken (free for open source, it's our case), you can download it on <a href="https://www.gitkraken.com/">https://www.gitkraken.com/</a></p>
+<p>When it's done, connect with your github account.
+<img src="contribute/media/gitKrakenSignIn.png" alt="GitKrakenSignIn" />
+<img src="contribute/media/gitKrakenSetupProfile.png" alt="GitKrakenSetupProfile" /></p>
+<p>You'll need a text editor, you can use any one you want. </p>
+<p>For instance I use notepad++ : <a href="https://notepad-plus-plus.org/downloads/">https://notepad-plus-plus.org/downloads/</a></p>
+<p>You have now the requirements needed to setup things !</p>
+<h2><a class="header" href="#setup-1" id="setup-1">Setup</a></h2>
+<p>Go to the official depot : <a href="https://github.com/pirl/pirl-docs">https://github.com/pirl/pirl-docs</a></p>
+<p>Then click on fork
+<a href="contribute/media/githubFork.png"><img src="contribute/media/githubFork.png"/></a></p>
+<p>You can retreive the fork under <code>Your repositories</code>
+<img src="contribute/media/yourRepositories.png" alt="YourRepositories" /></p>
+<p>Then you can access it by clicking on the name
+<img src="contribute/media/selectRepo.png" alt="SelectRepo" /></p>
+<p>Now click on <code>Code</code> then copy the URL
+<a href="contribute/media/getUrlForClone.png"><img src="contribute/media/getUrlForClone.png"/></a></p>
+<p>Go on gitkraken then click on <code>clone a repo</code>
+<img src="contribute/media/cloneRepoGitKraken.png" alt="CloneWithGitKraken" /></p>
+<p>Choose your path then paste your previously copied URL
+<img src="contribute/media/cloneSettings.png" alt="SetupClone" /></p>
+<p>You can now open the cloned repo
+<img src="contribute/media/openRepo.png" alt="OpenRepo" /></p>
+<p>You will need to download <code>mdbook</code> for windows at <a href="https://github.com/rust-lang/mdBook/releases">https://github.com/rust-lang/mdBook/releases</a>
+<img src="contribute/media/mdbook.png" alt="mdbook" /></p>
+<p>Extract it next to your <code>pirl-docs</code> folder
+<img src="contribute/media/placingMdbook.JPG" alt="mdbookPlace" /></p>
+<p>Then go on <code>File</code> -&gt; <code>Preferences...</code></p>
+<p><img src="contribute/media/settingGitKraken.png" alt="settingGitKraken" /></p>
+<p>Then select <code>PowerShell</code> under <code>Default Terminal</code>
+<img src="contribute/media/terminalGitKraken.png" alt="terminalGitKraken" /></p>
+<p>You can exit Preferences.</p>
+<p>You all now set to start contribute ! 
+See the next <a href="contribute/write_your_first_doc.html">guide</a> learn to how to write your first docs</p>
+<h1><a class="header" href="#windows-how-to-write-your-first-doc" id="windows-how-to-write-your-first-doc">[Windows] How to write your first doc</a></h1>
+<p>Hey fellow, if you seek to contribute with pirl docs, the following guides should be usefull for people who didn't use github.</p>
+<p>In this guide, you will see how to create a new guide.</p>
+<h2><a class="header" href="#requirements-3" id="requirements-3">Requirements</a></h2>
+<p>You will need to follow this guide first if not already done : <a href="contribute/setup_github.html">Setup Github  GitKraken</a></p>
+<h2><a class="header" href="#setup-2" id="setup-2">Setup</a></h2>
+<p>Each time you want to contribute, you will need to do this following step</p>
+<p>Under <code>File</code>, click on <code>Open Terminal</code>
+<img src="contribute/media/openRepo.png" alt="OpenTerminal" /></p>
+<p>Then execute the following commande <code>..\mdbook.exe serve</code>
+<img src="contribute/media/commandLine.png" alt="CommandLine" /></p>
+<p>You can reduce this window but do not close it (otherwise you will not be able to see your change in live)</p>
+<h2><a class="header" href="#create-your-first-guide" id="create-your-first-guide">Create your first guide</a></h2>
+<p>Now you are all set to create your first guide ! </p>
+<p>You can see other guide under <code>pirl-docs\src</code> like this
+<img src="contribute/media/folder.png" alt="Folder" /></p>
+<blockquote>
+<p>.md stand for markdown, it's a way to write document with bunch of usefull formating stuff</p>
+</blockquote>
+<p>For example, let's create together the next guide of this serie ! (Guideception)</p>
+<p>Create a new <code>.md</code> file (you can also duplicate an existing one)
+<img src="contribute/media/newDoc.png" alt="NewDoc" /></p>
+<p>For beginning, I'll just add the title
+<img src="contribute/media/newDoc2.PNG" alt="NewDoc1" /></p>
+<p>this snippet give this </p>
+<blockquote>
+<h1><a class="header" href="#windows-how-to-submit-your-contribution" id="windows-how-to-submit-your-contribution">[Windows] How to submit your contribution</a></h1>
+</blockquote>
+<blockquote>
+<h4><a class="header" href="#tips" id="tips">Tips</a></h4>
+<p><code>#</code> stand for title, <code>##</code> for subtitle, <code>###</code> sub-subtitle and so one
+<br></br></p>
+</blockquote>
+<p>Then I add some text
+<img src="contribute/media/newDoc3.PNG" alt="NewDoc1" /></p>
+<p>this snippet give this </p>
+<blockquote>
+<h1><a class="header" href="#windows-how-to-submit-your-contribution-1" id="windows-how-to-submit-your-contribution-1">[Windows] How to submit your contribution</a></h1>
+<p>Hey fellow, Hey fellow, if you seek to contribute with pirl docs, the following guides should be usefull for people who didn't use github.</p>
+<p>In this guide, you will see how to submit your contribution</p>
+</blockquote>
+<blockquote>
+<h4><a class="header" href="#tips-1" id="tips-1">Tips</a></h4>
+<p>You will need to add an extra line between your text if you want an line break</p>
+</blockquote>
+<p>Then I add some link to other guides
+<img src="contribute/media/newDoc4.PNG" alt="NewDoc1" /></p>
+<p>this snippet give this </p>
+<blockquote>
+<p>You will need to follow the 2 first guides : </p>
+<ul>
+<li><a href="contribute/setup_github.html">Setup Github + GitKraken</a></li>
+<li><a href="contribute/write_your_first_doc.html">Write your first guide</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<h4><a class="header" href="#tips-2" id="tips-2">Tips</a></h4>
+<p>If you want to add a link : <code>[DisplayName](MyPathOrURL)</code></p>
+<p>If you want bullet, simply add <code>-</code> on each line </p>
+</blockquote>
+<p>Then I add some pictures to my guide
+<img src="contribute/media/newDoc5.PNG" alt="NewDoc1" /></p>
+<p>this snippet give this </p>
+<blockquote>
+<p>Firstly, if you go back on gitkraken, you will see some changes
+<img src="contribute/media/gitKrakenGui.png" alt="GitKrakenGui" /></p>
+</blockquote>
+<blockquote>
+<h4><a class="header" href="#tips-3" id="tips-3">Tips</a></h4>
+<p>If you want to add a picture : <code>![InternalTag](PicturePath)</code></p>
+<p>If you want to add a clickable picture (to allow user to see it in full screen) : <code>[&lt;img src=&quot;ImgPath&quot;/&gt;](ImgPath)</code></p>
+<p>The path is based on the file location, you can add <code>..</code> to access parent folder</p>
+</blockquote>
+<p>You can find some usefull markdown keyword <a href="contribute/markdown_keyword.html">here</a></p>
+<p>And voila, it's now time to you to write your own guide and contribute to PIRL <img src="contribute/../media/PirlHeart.png" width="20"/></p>
+<p>When you have finished writing your guide, you can move on to the next tutorial : <a href="contribute/how_to_submit.html">How to submit</a></p>
+<h1><a class="header" href="#windows-how-to-submit-your-contribution-2" id="windows-how-to-submit-your-contribution-2">[Windows] How to submit your contribution</a></h1>
+<p>Hey fellow, if you seek to contribute with pirl docs, the following guides should be usefull for people who didn't use github.</p>
+<p>In this guide, you will see how to submit your contribution</p>
+<h2><a class="header" href="#setup-3" id="setup-3">Setup</a></h2>
+<p>You will need to follow the 2 first guides : </p>
+<ul>
+<li><a href="contribute/setup_github.html">Setup Github + GitKraken</a></li>
+<li><a href="contribute/write_your_first_doc.html">Write your first guide</a></li>
+</ul>
+<h2><a class="header" href="#make-a-new-branch" id="make-a-new-branch">Make a new branch</a></h2>
+<p>Now you have finished to write your first guide, you will need to <code>push</code> that work on github and create a <code>pull request</code></p>
+<p>No worries, we do that together step by step.</p>
+<p>Firstly, if you go back on gitkraken, you will see some changes 
+<a href="contribute/media/gitKrakenGui.png"><img src="contribute/media/gitKrakenGui.png"/></a></p>
+<p>On the right panel, you can see your changes. You will need to stage only the file you have created / edited.
+By clicking on the file, you can see the diff view
+<a href="contribute/media/diffView.png"><img src="contribute/media/diffView.png"/></a></p>
+<p>If all seems good, you can stage your files</p>
+<ul>
+<li>One by one</li>
+</ul>
+<p><img src="contribute/media/stageOneFile.png" alt="StageOneFile" /></p>
+<ul>
+<li>Multiple files at once (ctlr + clic)</li>
+</ul>
+<p><img src="contribute/media/stageMultipleFiles.png" alt="StageMultipleFiles" /></p>
+<p>When you have stage all your files, you can add a commit message then commit !</p>
+<p><img src="contribute/media/commit.png" alt="Commit" /></p>
+<p>You will now see your commit on gitkraken</p>
+<p><img src="contribute/media/commitDone.png" alt="CommitDone" /></p>
+<p>You can now create a new branch. Click on your commit, then on Branch and give it a cool name ! Then press enter</p>
+<p><img src="contribute/media/createBranch.png" alt="CreateBranch" /></p>
+<h2><a class="header" href="#push-your-new-branch" id="push-your-new-branch">Push your new branch</a></h2>
+<p>Then, you need to push your beautiful new branch. Simply click on Push button.</p>
+<p><img src="contribute/media/push.png" alt="Push" /></p>
+<p>The first time you push a new branch, you will see that. Just click on submit, default parameter are good</p>
+<p><img src="contribute/media/push2.png" alt="Push2" /></p>
+<h2><a class="header" href="#create-a-pull-request" id="create-a-pull-request">Create a Pull Request</a></h2>
+<p>Now you can create a pull request ! The final step</p>
+<p>You can do that directly trough gitKraken. Find Pull Request section in the left panel and click on <code>+</code> button</p>
+<p><img src="contribute/media/pullRequest.png" alt="pullRequest" /></p>
+<p>Then setup as the following</p>
+<ol>
+<li>Select your repo (aka GitHubUsername/pirl-docs)</li>
+<li>Select the official (aka pirl/pirl-docs)</li>
+<li>Select the branch you just created</li>
+<li>Select master</li>
+</ol>
+<p>then fill <code>Title</code> and <code>Description</code> section to give a little context.
+And finally click on <code>Create Pull Request</code> button</p>
+<p><img src="contribute/media/pullRequest2.png" alt="pullRequest2" /></p>
+<p>You can view your pull request directly in the official repo : <a href="https://github.com/pirl/pirl-docs/pulls">https://github.com/pirl/pirl-docs/pulls</a></p>
+<p><img src="contribute/media/viewPR.png" alt="pullRequest3" /></p>
+<p>And voila ! You just need to wait approval from official team.</p>
+<p>Thank you for contributing to Pirl and share the love <img src="contribute/../media/PirlHeart.png" width="20"/></p>
+<h1><a class="header" href="#most-usefull-keyword-in-markdown" id="most-usefull-keyword-in-markdown">Most usefull keyword in markdown</a></h1>
+<ul>
+<li><code>#</code> for title, <code>##</code> for sub-title, <code>###</code> for sub-sub-title and so one</li>
+<li><code>**MyText**</code> to write text in <strong>bold</strong></li>
+<li><code>*MyText*</code> to write text in <em>italic</em></li>
+<li><code>***MyText***</code> to write text in <em><strong>bold italic</strong></em></li>
+<li>`MyText` to write your text in <code>inline block</code></li>
+<li><code>MyText with some \*here and\* here</code> to escape character, display MyText with some * here and * here instead of MyText with some <em>here and</em> here</li>
+<li><code>&gt; MyText</code> to create a blockquote</li>
+</ul>
+<blockquote>
+<p>Blockquote</p>
+</blockquote>
+<ul>
+<li><code>1. MyText</code> to create a numbered list</li>
+</ul>
+<blockquote>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+</ol>
+</blockquote>
+<ul>
+<li><code>- MyText</code> to create a bullet list</li>
+</ul>
+<blockquote>
+<ul>
+<li>First item</li>
+<li>Second item</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>[displayName](URL)</code> to create text link. Like this <a href="contribute/../migrate/in_brief.html">FAQ</a></li>
+</ul>
+<blockquote>
+<h4><a class="header" href="#pro-tips" id="pro-tips">Pro tips</a></h4>
+<p>you can add tag to directly jump on specific section</p>
+<p><code>[Validator Reward](../migrate/in_brief.md#what-is-the-validator-reward-amount-)</code> to get this : <a href="contribute/../migrate/in_brief.html#what-is-the-validator-reward-amount-">Validator Reward</a></p>
+</blockquote>
+<ul>
+<li><code>![InternalTag](ImgPath)</code> to insert a picture.</li>
+</ul>
+<blockquote>
+<p><code>![PirlHeart](../media/PirlHeart.png)</code> give that <img src="contribute/../media/PirlHeart.png" alt="PirlHeart" /></p>
+</blockquote>
+<blockquote>
+<h4><a class="header" href="#pro-tips-1" id="pro-tips-1">Pro tips</a></h4>
+<p>If you want to have a clickable picture (to be able user to see it in full screen) use that instead</p>
+<p><code>[&lt;img src=&quot;../media/PirlHeart.png&quot;/&gt;](../media/PirlHeart.png.png)</code> give us <a href="contribute/../media/PirlHeart.png.png"><img src="contribute/../media/PirlHeart.png"/></a></p>
+<p>And if you want to scale it to put some heart <img src="contribute/../media/pirlHeart.png" width="20"/> everywhere do that </p>
+<p><code>&lt;img src=&quot;../media/PirlHeart.png&quot; width=&quot;20&quot;/&gt;</code></p>
+</blockquote>
+<p>If you want to use more advance keyword, you can find plenty of docs here : <a href="https://www.markdownguide.org/basic-syntax">https://www.markdownguide.org/basic-syntax</a></p>
 <h1><a class="header" href="#credits-" id="credits-">Credits :</a></h1>
 <h3><a class="header" href="#a-hrefhttpscommunitypirliocommunity-guidesa" id="a-hrefhttpscommunitypirliocommunity-guidesa"><a href="https://community.pirl.io">Community guides</a></a></h3>
 <h3><a class="header" href="#a-hrefhttpswikipolkadotnetworkpolkadot-wiki-a" id="a-hrefhttpswikipolkadotnetworkpolkadot-wiki-a"><a href="https://wiki.polkadot.network/">Polkadot wiki </a></a></h3>
